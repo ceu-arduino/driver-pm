@@ -1,0 +1,25 @@
+native/pre do
+    ##define CEU_PM_IMPL
+
+    #include "../pm.c"
+    ##include "LowPower.h"
+    ##include "LowPower.cpp"
+
+    enum {
+        CEU_PM_ADC = 0,
+        CEU_PM_SERCOM4,
+        CEU_PM_TC4,
+        CEU_PM_N,
+    };
+
+    void ceu_pm_init (void) {
+        // ok
+    }
+
+    void ceu_pm_sleep (void) {
+        LowPower.idle(IDLE_0);    // awakes: TC4
+        //LowPower.idle(IDLE_1);    // awakes: TC4
+        //LowPower.idle(IDLE_2);    // awakes: TC4
+        //LowPower.standby();       // doesnt: TC4
+    }
+end

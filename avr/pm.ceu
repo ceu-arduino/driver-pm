@@ -1,5 +1,7 @@
 native/pre do
 
+    ##define CEU_PM_IMPL
+
     #include "../pm.c"
     ##include "LowPower.h"
     ##include "LowPower.cpp"

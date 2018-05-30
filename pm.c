@@ -7,6 +7,8 @@ extern "C" {
 
 static u32 ceu_pm_state = 0;        // up to 32 peripherals
 
+void ceu_pm_init (void);
+
 void ceu_pm_sleep (void);
 
 void ceu_pm_set (u8 peripheral, bool state) {

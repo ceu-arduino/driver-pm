@@ -1,18 +1,23 @@
-#define CEU_PM_STATE(peripheral) bitRead(ceu_pm_state, peripheral)
-#define ceu_pm_set(a,b) ceu_pm_set_(a,b)
+#define CEU_PM_ON(dev) ((int)(ceu_pm_state[dev] > 0))
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-static u32 ceu_pm_state = 0;        // up to 32 peripherals
+static u8 ceu_pm_state[CEU_PM_N];
 
 void ceu_pm_init (void);
 
+void _ceu_pm_init (void) {
+    memset(ceu_pm_state, 0, CEU_PM_N * sizeof(u8));
+}
+
 void ceu_pm_sleep (void);
 
-void ceu_pm_set (u8 peripheral, bool state) {
-    bitWrite(ceu_pm_state, peripheral, state);
+void ceu_pm_inc (u8 dev, bool inc) {
+    //ceu_assert(inc==-1 && ceu_pm_state[dev]>0 ||
+               //inc== 1 && ceu_pm_state[dev]<U8_MAX, "bug found");
+    ceu_pm_state[dev] += inc;
 }
 
 #ifdef __cplusplus

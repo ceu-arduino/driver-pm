@@ -14,7 +14,6 @@ native/pre do
         CEU_PM_TIMER5,
 #endif
         CEU_PM_USART,
-        CEU_PM_WDT,
         CEU_PM_N,
     };
 

@@ -45,27 +45,28 @@ native/pre do
             ceu_pm_get(CEU_PM_TIMER2) || ceu_pm_get(CEU_PM_USART)  ||
             ceu_pm_get(CEU_PM_SPI))
         {
+
             LowPower.idle(SLEEP_FOREVER,
-                          ceu_pm_get(CEU_PM_ADC),
+                          (adc_t) ceu_pm_get(CEU_PM_ADC),
 #ifdef ARDUINO_BOARD_MEGA
-                          ceu_pm_get(CEU_PM_TIMER5),
-                          ceu_pm_get(CEU_PM_TIMER4),
-                          ceu_pm_get(CEU_PM_TIMER3),
+                          (timer5_t) ceu_pm_get(CEU_PM_TIMER5),
+                          (timer4_t) ceu_pm_get(CEU_PM_TIMER4),
+                          (timer3_t) ceu_pm_get(CEU_PM_TIMER3),
 #endif
-                          ceu_pm_get(CEU_PM_TIMER2),
-                          ceu_pm_get(CEU_PM_TIMER1),
-                          ceu_pm_get(CEU_PM_TIMER0),
-                          ceu_pm_get(CEU_PM_SPI),
+                          (timer2_t) ceu_pm_get(CEU_PM_TIMER2),
+                          (timer1_t) ceu_pm_get(CEU_PM_TIMER1),
+                          (timer0_t) ceu_pm_get(CEU_PM_TIMER0),
+                          (spi_t) ceu_pm_get(CEU_PM_SPI),
 #ifdef ARDUINO_BOARD_MEGA
                           USART3_OFF, USART2_OFF, USART1_OFF,
 #endif
-                          ceu_pm_get(CEU_PM_USART),
+                          (usart0_t) ceu_pm_get(CEU_PM_USART),
                           TWI_OFF);
         }
         else if (ceu_pm_get(CEU_PM_ADC))
         {
             LowPower.adcNoiseReduction(SLEEP_FOREVER,
-                                       ceu_pm_get(CEU_PM_ADC),
+                                       (adc_t) ceu_pm_get(CEU_PM_ADC),
                                        TIMER2_OFF);
         }
         else

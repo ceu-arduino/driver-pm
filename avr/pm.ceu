@@ -14,6 +14,7 @@ native/pre do
         CEU_PM_TIMER5,
 #endif
         CEU_PM_USART,
+        CEU_PM_TWI = 0,
         CEU_PM_N,
     };
 
@@ -43,7 +44,7 @@ native/pre do
 
         if (ceu_pm_get(CEU_PM_TIMER0) || ceu_pm_get(CEU_PM_TIMER1) ||
             ceu_pm_get(CEU_PM_TIMER2) || ceu_pm_get(CEU_PM_USART)  ||
-            ceu_pm_get(CEU_PM_SPI))
+            ceu_pm_get(CEU_PM_TWI)    || ceu_pm_get(CEU_PM_SPI))
         {
 
             LowPower.idle(SLEEP_FOREVER,
@@ -61,7 +62,7 @@ native/pre do
                           USART3_OFF, USART2_OFF, USART1_OFF,
 #endif
                           (usart0_t) ceu_pm_get(CEU_PM_USART),
-                          TWI_OFF);
+                          (twi_t) ceu_pm_get(CEU_PM_TWI));
         }
         else if (ceu_pm_get(CEU_PM_ADC))
         {
